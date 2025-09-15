@@ -1,7 +1,13 @@
 <div class="counters">
-	<p>Counter is: <span class="red">{{ counter() }}</span></p>
-	<p>Double is: <span class="lime">{{ doubleCount() }}</span></p>
-	<p>Triple is: <span class="yellow">{{ tripleIndependent() }}</span></p>
+	<p>
+		Counter is: <span class="red">{{ counter() }}</span>
+	</p>
+	<p>
+		Double is: <span class="lime">{{ doubleCount() }}</span>
+	</p>
+	<p>
+		Triple is: <span class="yellow">{{ tripleIndependent() }}</span>
+	</p>
 </div>
 <button class="lime" (click)="increment()">Increment</button>
 <button class="red" (click)="decrement()">Decrement</button>

@@ -7,4 +7,6 @@
 		detection to update it
 	</p>
 	<app-homepage-counter-example></app-homepage-counter-example>
+	<button class="red" (click)="mutateFirstUser()">Mutate First User</button>
+	<app-user-list-example [usersSignal]="usersAsSignal()" [userFromRxJS]="usersAsObservableResponse"></app-user-list-example>
 </div>
