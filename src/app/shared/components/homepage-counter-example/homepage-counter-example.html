@@ -1,0 +1,8 @@
+<div class="counters">
+	<p>Counter is: <span class="red">{{ counter() }}</span></p>
+	<p>Double is: <span class="lime">{{ doubleCount() }}</span></p>
+	<p>Triple is: <span class="yellow">{{ tripleIndependent() }}</span></p>
+</div>
+<button class="red" (click)="increment()">Increment</button>
+<button class="lime" (click)="decrement()">Decrement</button>
+<button class="yellow" (click)="incrementTripleByOne()">Increment Triple by 1</button>
