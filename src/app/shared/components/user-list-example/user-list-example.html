@@ -1,21 +1,19 @@
-<h2>List of users (signal):</h2>
+<h2>List of users (signal + defer):</h2>
 @defer (when usersSignal()) {
 	@for (user of usersSignal(); track $index) {
 		<p>{{ user.name }} {{ user.surname }} - {{ user.age }} - {{ user.email }}</p>
 	} @empty {
 		<p>No users available</p>
 	}
-}
-@loading {
+} @placeholder {
 	<p>Loading users...</p>
-}
-@error () {
+} @error () {
 	<p>Error loading users</p>
 }
-
-<h2>List of users (from RxJS):</h2>
+<br>
+<h2>List of users (from RxJS, no defer):</h2>
 @for (user of userFromRxJS; track $index) {
 	<p>{{ user.name }} {{ user.surname }} - {{ user.age }} - {{ user.email }}</p>
 } @empty {
-		<p>No users available</p>
+	<p>No users available</p>
 }

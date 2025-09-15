@@ -3,3 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+button#mutate {
+	margin-top: 20px;
+}

@@ -7,10 +7,9 @@ import {
 	WritableSignal,
 } from '@angular/core';
 import { HomepageCounterExample } from './shared/components/homepage-counter-example/homepage-counter-example';
+import { UserListExample } from './shared/components/user-list-example/user-list-example';
 import { User } from './shared/models/User.model';
 import { UserService } from './shared/services/user-service';
-import { Observable } from 'rxjs';
-import { UserListExample } from './shared/components/user-list-example/user-list-example';
 
 @Component({
 	selector: 'app-root',
@@ -41,6 +40,11 @@ export class App implements OnInit {
 		});
 	}
 
+	/**
+	 * Mutation happens on father component --> Different behaviour of change propagation on child components
+	 * 1) usersAsSignal() is a signal, so change detection is automatic
+	 * 2) usersAsObservableResponse is an array, so change detection needs to be manually triggered
+	 */
 	public mutateFirstUser(): void {
 		if (this.usersAsSignal()?.length) {
 			const firstUser = this.usersAsSignal()![0];
