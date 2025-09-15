@@ -20,14 +20,14 @@ button {
 }
 
 button.red {
-	background-color: var(--lime);
-	color: var(--black);
-}
-button.lime {
 	background-color: var(--red);
 	color: var(--white);
 }
-button.yellow {
+button.lime {
+	background-color: var(--lime);
+	color: var(--black);
+}
+button.orange {
 	background-color: var(--orange);
 	color: var(--black);
 }
