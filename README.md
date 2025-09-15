@@ -1,59 +1,84 @@
-# AngularExamTrainingFE
+# AngularExamTraining-FE
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+This project is a training front-end application built with Angular 20 and Node.js 22.19. It demonstrates modern Angular features, including zoneless change detection and signals.
 
-## Development server
+It is meant to train and study for the Angular Certifiation Exam, paired with the Backend repository (AngularExamTraining-BE).
 
-To start a local development server, run:
+Feel free to make changes, fork, create pull requests for custom proprietary branches.
 
-```bash
-ng serve
+## Features
+
+- Angular 20 with strict TypeScript settings
+- Zoneless change detection (OnPush strategy)
+- Example of signals and computed/linked signals
+- Simple counter component with increment/decrement logic
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v22.19 or compatible)
+- [Angular CLI](https://angular.dev/tools/cli) (v20.2.2 or compatible)
+
+### Installation
+
+Install dependencies:
+
+```sh
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Development Server
 
-## Code scaffolding
+Start the development server:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+```sh
+npm run start
+```
 
-```bash
+Navigate to [http://localhost:4200/](http://localhost:4200/) in your browser. The app will reload automatically if you change any source files.
+
+### Building
+
+To build the project for production:
+
+```sh
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+### Running Unit Tests
+
+To execute unit tests via [Karma](https://karma-runner.github.io):
+
+```sh
+npm test
+```
+
+### Code Scaffolding
+
+Generate a new component:
+
+```sh
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+For more schematics, run:
 
-```bash
+```sh
 ng generate --help
 ```
 
-## Building
+## VS Code Integration
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Recommended extension: `angular.ng-template` (see [.vscode/extensions.json](.vscode/extensions.json)).
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular Documentation](https://angular.dev/docs)
+- [Angular CLI Reference](https://angular.dev/tools/cli)
+
+---
+
+This project is for educational and training purposes, under MIT License.
