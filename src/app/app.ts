@@ -10,6 +10,7 @@ import { HomepageCounterExample } from './shared/components/homepage-counter-exa
 import { UserListExample } from './shared/components/user-list-example/user-list-example';
 import { User } from './shared/models/User.model';
 import { UserService } from './shared/services/user-service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	selector: 'app-root',
@@ -21,6 +22,7 @@ import { UserService } from './shared/services/user-service';
 })
 export class App implements OnInit {
 	public usersAsSignal: WritableSignal<User[] | undefined> = signal(undefined);
+	public errorSignal: WritableSignal<string | null> = signal(null);
 
 	public usersAsObservableResponse!: User[];
 
@@ -33,10 +35,14 @@ export class App implements OnInit {
 		// Also, error handling is omitted for brevity
 
 		// TL;DR this is just recieving and assigning API data response.
-
-		this.userService.getAllUsers().subscribe((users) => {
-			this.usersAsSignal.set(users.map((u) => ({ ...u })));
-			this.usersAsObservableResponse = users.map((u) => ({ ...u }));
+		this.userService.getAllUsers().subscribe({
+			next: (users) => {
+				this.usersAsSignal.set(users.map((u) => ({ ...u })));
+				this.usersAsObservableResponse = users.map((u) => ({ ...u }));
+			},
+			error: (err) => {
+				this.errorSignal.set('Error loading users');
+			},
 		});
 	}
 

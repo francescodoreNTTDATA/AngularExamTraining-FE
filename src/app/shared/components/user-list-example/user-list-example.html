@@ -1,14 +1,31 @@
+<!-- Explanation: -->
+<!-- Using "defer" to defer the DOM rendering needs to depend on a signal. In our case, the "userSignal" is our source signal -->
+<!-- To show an error inside the "@error" block, the "userSignal" itself needs to error. In this specific case, that can't happen, here's why: -->
+<!-- The "userSignal" is a writable signal, not a normal one. This is because we need it to mutate in the parent component. -->
+<!-- This means we can't use "toSignal" directly, because it would come out as a normal signal and we couldn't call the "set" method in the parent "mutateFirstUser()" method -->
+<!-- Hence, we separate the error handling in a separate signal, "errorSignal", which we can set to a string message in case of error -->
+<!-- This way, we can show the error message in the template outside of the "defer" block -->
+<!-- The "userSignal" itself won't ever error in this specific example, but in a real world scenario, it could be tied to an async data source that might fail -->
+
 <h2>List of users (signal + defer):</h2>
-@defer (when usersSignal()) {
-	@for (user of usersSignal(); track $index) {
-		<p>{{ user.name }} {{ user.surname }} - {{ user.age }} - {{ user.email }}</p>
-	} @empty {
-		<p>No users available</p>
+<!-- As explained, this errorSignal in the "@if" guard is needed here for error checking -->
+@if (errorSignal()) {
+	<p>{{ errorSignal() }}</p>
+} @else {
+	@defer (when usersSignal()) {
+		@for (user of usersSignal(); track $index) {
+			<p>{{ user.name }} {{ user.surname }} - {{ user.age }} - {{ user.email }}</p>
+		} @empty {
+			<p>No users available</p>
+		}
+	} @placeholder {
+		<p>Loading users...</p>
+	} @error () {
+		<!-- Example right now won't ever show an error this way because the signal it depends on didn't error.  -->
+		<!-- Need an external error signal or "toSignal" in parent component -->
+		<!-- Can't use "toSignal" in this case because we need a writableSignal to mutate later in the parent component -->
+		<p>Error loading users</p>
 	}
-} @placeholder {
-	<p>Loading users...</p>
-} @error () {
-	<p>Error loading users</p>
 }
 <br>
 <h2>List of users (from RxJS, no defer):</h2>

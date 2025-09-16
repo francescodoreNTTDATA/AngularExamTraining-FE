@@ -9,5 +9,7 @@ import { User } from '../../models/User.model';
 })
 export class UserListExample {
 	public usersSignal = input<User[] | undefined>();
+	public errorSignal = input<string | null>();
+
 	@Input() userFromRxJS!: User[];
 }

@@ -8,5 +8,9 @@
 	</p>
 	<app-homepage-counter-example></app-homepage-counter-example>
 	<button id="mutate" (click)="mutateFirstUser()">Mutate First User</button>
-	<app-user-list-example [usersSignal]="usersAsSignal()" [userFromRxJS]="usersAsObservableResponse"></app-user-list-example>
+	<app-user-list-example
+		[usersSignal]="usersAsSignal()"
+		[errorSignal]="errorSignal()"
+		[userFromRxJS]="usersAsObservableResponse"
+	></app-user-list-example>
 </div>
