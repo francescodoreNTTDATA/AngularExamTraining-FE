@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	computed,
+	inject,
 	linkedSignal,
 	OnInit,
 	Signal,
@@ -21,7 +22,7 @@ export class HomepageCounterExample implements OnInit {
 	public doubleCount!: Signal<number>;
 	public tripleIndependent!: WritableSignal<number>;
 
-	constructor(private counterService: CounterService) {}
+	private counterService: CounterService = inject(CounterService);
 
 	ngOnInit(): void {
 		this.counter = this.counterService.getCounterSignal();

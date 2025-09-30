@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
+	inject,
 	OnInit,
 	signal,
 	WritableSignal,
@@ -24,7 +25,8 @@ export class App implements OnInit {
 
 	public usersAsObservableResponse!: User[];
 
-	constructor(private userService: UserService, private cdr: ChangeDetectorRef) {}
+	private userService: UserService = inject(UserService);
+	private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
 	ngOnInit(): void {
 		// Following code just decouples by doing a deep copy of objects.
