@@ -2,6 +2,7 @@ import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
+	inject,
 	OnInit,
 	signal,
 	WritableSignal,
@@ -10,7 +11,6 @@ import { HomepageCounterExample } from './shared/components/homepage-counter-exa
 import { UserListExample } from './shared/components/user-list-example/user-list-example';
 import { User } from './shared/models/User.model';
 import { UserService } from './shared/services/user-service';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
 	selector: 'app-root',
@@ -26,7 +26,8 @@ export class App implements OnInit {
 
 	public usersAsObservableResponse!: User[];
 
-	constructor(private userService: UserService, private cdr: ChangeDetectorRef) {}
+	private userService: UserService = inject(UserService);
+	private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
 	ngOnInit(): void {
 		// Following code just decouples by doing a deep copy of objects.
@@ -40,7 +41,7 @@ export class App implements OnInit {
 				this.usersAsSignal.set(users.map((u) => ({ ...u })));
 				this.usersAsObservableResponse = users.map((u) => ({ ...u }));
 			},
-			error: (err) => {
+			error: () => {
 				this.errorSignal.set('Error loading users');
 			},
 		});

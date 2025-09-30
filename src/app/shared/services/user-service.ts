@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/User.model';
 
@@ -9,7 +9,7 @@ import { User } from '../models/User.model';
 export class UserService {
 	private BASE_URL = 'http://localhost:4100/api'; // Bad practice, doesn't matter for this demo
 
-	constructor(private httpClient: HttpClient) {}
+	private httpClient: HttpClient = inject(HttpClient);
 
 	public getAllUsers(): Observable<User[]> {
 		return this.httpClient.get<User[]>(`${this.BASE_URL}/users`);
